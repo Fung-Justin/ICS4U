@@ -5,6 +5,7 @@ body{
     margin: 0;
     background: color #f4f4f4; 
 }
+
 /*Global */
 .container{
     width: 80%;
@@ -114,7 +115,7 @@ header a:hover{
     float: right;
     margin-top: 15px;
 }
-#newsletter input[type="email"]{
+#newsletter input[placeholder="Enter Email..."]{
     padding: 4px;
     height: 35px;
     width: 250px;

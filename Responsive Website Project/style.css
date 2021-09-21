@@ -1,0 +1,28 @@
+nav{
+    background-color:#3882e9;
+}
+
+#navbar-img{
+    display: block;
+    height: 40px;
+    width: auto;
+    padding: 0;
+    margin-left: 0;
+    margin-right: 10px;
+    
+
+    
+}
+
+#myVideo {
+    position: fixed;
+    
+    bottom: 50px;
+    min-width: auto;
+    min-height: auto;
+  }
+
+  .current {
+      color: black;
+
+  }

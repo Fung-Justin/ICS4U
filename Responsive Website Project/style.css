@@ -1,5 +1,5 @@
 nav{
-    background-color:#3882e9;
+    background-color:#48655A;
 }
 
 #navbar-img{
@@ -10,9 +10,27 @@ nav{
     margin-left: 0;
     margin-right: 10px;
     
-
-    
 }
+
+nav h1{
+  font-size: 30px;
+}
+
+.p-5{
+  display: flex;
+  flex-basis: 0;  
+  
+  border: 1px solid black;
+  
+
+}
+
+
+body::before {
+    display: block;
+    content: '';
+    height: 70px;
+  }
 
 #myVideo {
     position: fixed;
@@ -25,4 +43,43 @@ nav{
   .current {
       color: black;
 
+  }
+
+  .Image{
+    width: 100%; /* You can set the dimensions to whatever you want */
+    height: 307px;
+    object-fit: cover;
+    padding: 0;
+    margin: 0;
+    
+  }
+
+#image {
+  position: absolute;
+  background-image: url(./images/background.jpg);
+  background-position: 0 -100px; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 452px;
+ 
+  opacity: 0.7;
+}
+
+#tImg {
+  position: absolute;
+  background-image: url(./images/team\ background.jpg);
+  background-position: 0 -100px; 
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 452px;
+ 
+  opacity: 0.7;
+}
+
+  @media (min-width: 768px) {
+    .news-input {
+      width: 50%;
+    }
   }

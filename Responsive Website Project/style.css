@@ -1,3 +1,4 @@
+* { margin: 0; }
 nav{
     background-color:#48655A;
 }
@@ -23,6 +24,18 @@ nav h1{
   border: 1px solid black;
   
 
+}
+#image {
+  position: absolute;
+  background-image: url(./images/27308724657_dd71a9d7f8_k.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  
+  
 }
 
 
@@ -54,32 +67,37 @@ body::before {
     
   }
 
-#image {
-  position: absolute;
-  background-image: url(./images/background.jpg);
-  background-position: 0 -100px; 
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 452px;
- 
-  opacity: 0.7;
-}
-
-#tImg {
-  position: absolute;
-  background-image: url(./images/team\ background.jpg);
-  background-position: 0 -100px; 
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 452px;
- 
-  opacity: 0.7;
-}
+  .storeCard{
+    display: inline;
+    padding: 5px;
+  }
 
   @media (min-width: 768px) {
-    .news-input {
-      width: 50%;
+    
+    #image {
+      position: absolute;
+      background-image: url(./images/background.jpg);
+      background-position: 0 -100px; 
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 700px;
+      z-index: 2;
+      opacity: 0.4;
+    }
+    
+    #tImg {
+      position: absolute;
+      background-image: url(./images/team\ background.jpg);
+      background-position: 0 -100px; 
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 100%;
+    
+      opacity: 0.4;
     }
   }
+
+
+ 

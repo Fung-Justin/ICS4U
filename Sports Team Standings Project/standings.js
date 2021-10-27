@@ -20,7 +20,14 @@ async function getGameData() {
 
 }
 
+function storeData() {
+  localStorage.setItem('storedTeams', JSON.stringify(allTeams));
 
+  console.log("storing");
+  localStorage.setItem('storedAllGames', JSON.stringify(allGames));
+
+
+}
 
 let sortDirection = 'ASC';
 let allGames = [];
@@ -221,6 +228,9 @@ function createRow(team) {
     newCell = document.createElement('td');
     newCell.appendChild(document.createTextNode(getStrk(team.Team)));
     newRow.appendChild(newCell);
+
+
+    storeData();
     return newRow;
 }
 

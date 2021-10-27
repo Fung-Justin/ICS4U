@@ -18,14 +18,18 @@ async function getStandings() {
     return data;
 
 }
+let allGamesString = localStorage.getItem('storedAllGames');
+let allGames = JSON.parse(allGamesString);
 
-let allGames = [];
+
+
 let games = [];
 
-let allTeams = [];
+let allTeamsString = localStorage.getItem('storedTeams');
+let allTeams = JSON.parse(allTeamsString);
 let teams = [];
 let currentWeek = 1; 
-
+let sWeek = 1;
 
 
 function convertName(nTeam){
@@ -220,7 +224,82 @@ function createCard(game) {
     cardBody.appendChild(createTable(game));
     card.appendChild(cardBody);
     newRow.appendChild(card);
+    
     return newRow;
+
+}
+
+function pagination(){
+
+   let btn = document.createElement('button');
+   btn.innerText = '<';
+   btn.id = 'front';
+   btn.onclick = function(){
+    let section =  document.querySelector('#btnGroup');
+    section.removeChild(document.getElementById('front'));
+    section.removeChild(document.getElementById('end'));
+    for(i = 0; i<10; i++){
+        section.removeChild(document.getElementById('btn' +( sWeek+i)))
+    }
+       if(sWeek > 1)
+       sWeek--
+
+       pagination();
+   }
+   btn.className = 'btn btn-primary m-1'
+   document.querySelector('#btnGroup').appendChild(btn);
+
+ 
+
+    for(i=sWeek; i<=(sWeek+9); i++){
+        let btn = document.createElement('button');
+        btn.innerText = 'Week ' + i;
+        btn.id = 'btn' + i;
+        btn.className = 'btn btn-primary m-1'
+      
+        document.querySelector('#btnGroup').appendChild(btn);
+        
+    }
+
+    btn = document.createElement('button');
+    btn.innerText = '>';
+    btn.id = 'end';
+    btn.onclick = function(){
+        
+
+        let section =  document.querySelector('#btnGroup');
+        section.removeChild(document.getElementById('front'));
+        section.removeChild(document.getElementById('end'));
+        for(i = 0; i<10; i++){
+            section.removeChild(document.getElementById('btn' +( sWeek+i)))
+        }
+
+       if(sWeek <8)
+        sWeek++
+
+        
+        pagination();
+    }
+    btn.className = 'btn btn-primary m-1'
+    document.querySelector('#btnGroup').appendChild(btn);
+
+
+    document.getElementById('btn' + sWeek).onclick = function(){changeWeek(sWeek)};
+    document.getElementById('btn' + (sWeek+1)).onclick = function(){changeWeek(sWeek+1)};
+    document.getElementById('btn' + (sWeek+2 )).onclick = function(){changeWeek(sWeek+2)};
+    document.getElementById('btn' + (sWeek+3 )).onclick = function(){changeWeek(sWeek+3)};
+    document.getElementById('btn' + (sWeek+4 )).onclick = function(){changeWeek(sWeek+4)};
+    document.getElementById('btn' + (sWeek+5 )).onclick = function(){changeWeek(sWeek+5)};
+    document.getElementById('btn' + (sWeek+6 )).onclick = function(){changeWeek(sWeek+6)};
+    document.getElementById('btn' + (sWeek+7 )).onclick = function(){changeWeek(sWeek+7)};
+    document.getElementById('btn' + (sWeek+8 )).onclick = function(){changeWeek(sWeek+8)};
+    document.getElementById('btn' + (sWeek+9 )).onclick = function(){changeWeek(sWeek+9)};
+    
+    
+ 
+
+    
+    
 }
 
 function createSchedule() {
@@ -239,9 +318,12 @@ function initTeams(){
 
 function initGames(){
     allGames = games; 
+    
 }
 
+createSchedule();
+pagination();
 getStandings().then(data => { teams = data; allTeams = teams; initTeams() });
-getGameData().then(data => { games = data; allGames = games; initGames(); createSchedule() })
+//getGameData().then(data => { games = data; allGames = games; initGames(); createSchedule() })
 
 

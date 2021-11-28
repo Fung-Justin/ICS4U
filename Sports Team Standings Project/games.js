@@ -7,7 +7,7 @@ async function getGameData() {
 
     return data;
 
-}
+} 
 
 async function getStandings() {
 

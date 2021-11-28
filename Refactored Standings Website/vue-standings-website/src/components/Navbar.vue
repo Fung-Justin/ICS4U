@@ -25,7 +25,7 @@
 
                   <li class="nav-item">
 
-                       <router-link to="/about" class=" nav-link fs-5 px-3 text-dark"> About </router-link> 
+                       <router-link to="/games" class=" nav-link fs-5 px-3 text-dark"> Games </router-link> 
 
                   </li>
 

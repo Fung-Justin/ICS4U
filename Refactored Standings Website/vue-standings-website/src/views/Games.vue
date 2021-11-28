@@ -50,8 +50,7 @@
 
 
 <script>
-import json from '@/assets/teams.json'
-import gjson from '@/assets/games.json'
+
 import card from '@/components/GamesCard.vue'
 import pagination from '@/components/Pagination.vue'
 
@@ -69,8 +68,8 @@ export default {
   data() {
  
      return{
-      teamsJson: json,
-    gamesJson: gjson,
+      teamsJson: JSON,
+    gamesJson: JSON,
     filteredJson :JSON,
     currentWeek:Number,
    
@@ -89,14 +88,14 @@ export default {
      this.currentWeek--
    },
     filterJson(){
-      this.filteredJson = gjson.filter(game => (game.Week == this.currentWeek))
+      this.filteredJson = this.gamesJson.filter(game => (game.Week == this.currentWeek))
       return this.filteredJson;
     },
 
   
    Teamimg(team){
   
-    let result = json.filter(teams =>(teams.Team ===team ))
+    let result = this.teamsJson.filter(teams =>(teams.Team ===team ))
    
 
     return result[0].Logo
@@ -107,30 +106,17 @@ export default {
 
    },
     
-changeWeek(week){
-  /*  
-    gjson.forEach(game => {
-        let section = document.getElementById('sections');
-        let cards = document.getElementById('card');
-        console.log('hello');
-        section.removeChild(cards);
-        
-    });
-   
-    */
 
-    this.currentWeek = week;
-    console.log("IT WORKS");
-    
-}
    
 
 
 
   },
   created(){
-    this.filteredJson = []
-    this.currentWeek = 1
+    this.filteredJson = [];
+    this.currentWeek = 1;
+     this.teamsJson = JSON.parse(localStorage.getItem('storedTeams'));
+   this.gamesJson = JSON.parse(localStorage.getItem('storedAllGames'));
     
   },
   mounted(){

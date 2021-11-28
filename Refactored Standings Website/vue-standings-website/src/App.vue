@@ -1,6 +1,7 @@
 <template>
   <div id="nav">
    <Navbar/>
+   {{storeData()}}
     <router-view/>
   </div>
   
@@ -14,7 +15,8 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import Navbar from '@/components/Navbar.vue'
 import Standings from '@/components/Standings.vue'
-import json from '@/assets/teams.json'
+import tjson from '@/assets/teams.json'
+import gjson from '@/assets/games.json'
 
 
 
@@ -25,15 +27,27 @@ export default {
     Navbar,
     HelloWorld,
     Standings,
-    json
+    tjson,
+    gjson
   },
 
 data(){
  return{
-    myJson: json
+    
   }
-}
+},
+  methods: {
+    storeData() {
+      localStorage.clear();
+  localStorage.setItem('storedTeams', JSON.stringify(tjson));
 
+  console.log("storing");
+  localStorage.setItem('storedAllGames', JSON.stringify(gjson));
+
+
+ 
+}
+  }
 }
 </script>
 

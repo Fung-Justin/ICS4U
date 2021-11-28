@@ -26,7 +26,7 @@
           <th scope="col">Streak</th>
         </tr>
       </thead>
-      <Standings :teams = teams :key="num"/>
+      <Standings :teams = this.teamsJson :key="num"/>
     </table>
     
   </div>
@@ -43,8 +43,7 @@
 
 
 import Standings from '@/components/Standings.vue'
-import json from '@/assets/teams.json'
-import gjson from '@/assets/games.json'
+
 
 
 
@@ -55,16 +54,15 @@ export default {
     
   
     Standings,
-    json,
-    gjson
+    
 
     
   },
 
 data(){
  return{
-    teamsJson: json,
-    gamesJson: gjson,
+    teamsJson: JSON,
+    gamesJson: JSON,
   teams: [],
   sortDirection:String,
    num:Number,
@@ -90,20 +88,20 @@ console.log(this.sortDirection);
   if (this.sortDirection.localeCompare("ASC") == 0) {
     
     if (field === 'wins') {
-      this.teams = json.sort((a, b) => b.Wins - a.Wins)
+      this.teams = this.teamsJson.sort((a, b) => b.Wins - a.Wins)
    } else if (field === 'Percentage') {
-      this.teams = json.sort((a, b) => b.Percentage - a.Percentage)
+      this.teams = this.teamsJson.sort((a, b) => b.Percentage - a.Percentage)
       
    } else if (field === 'losses') {
-      this.teams = json.sort((a, b) => b.Losses - a.Losses)
+      this.teams = this.teamsJson.sort((a, b) => b.Losses - a.Losses)
    } else if (field === 'ties') {
-    this.teams = json.sort((a, b) => b.Ties - a.Ties)
+    this.teams = this.teamsJson.sort((a, b) => b.Ties - a.Ties)
  }   else if (field === 'team') {
-      this.teams = json.sort((a, b) => a.Name.localeCompare(b.Name))
+      this.teams = this.teamsJson.sort((a, b) => a.Name.localeCompare(b.Name))
    }else if (field === 'pf') {
-    this.teams = json.sort((a, b) => b.PointsFor - a.PointsFor)
+    this.teams = this.teamsJson.sort((a, b) => b.PointsFor - a.PointsFor)
   }else if (field === 'pa') {
-    this.teams = json.sort((a, b) => b.PointsAgainst - a.PointsAgainst)
+    this.teams = this.teamsJson.sort((a, b) => b.PointsAgainst - a.PointsAgainst)
   }
   this.sortDirection = 'DSC';
   
@@ -112,21 +110,21 @@ console.log(this.sortDirection);
 
      
      if (field === 'wins') {
-      this.teams = json.sort((a, b) => a.Wins - b.Wins)
+      this.teams = this.teamsJson.sort((a, b) => a.Wins - b.Wins)
 
    } else if (field === 'Percentage') {
-      this.teams = json.sort((a, b) => a.Percentage - b.Percentage)
+      this.teams = this.teamsJson.sort((a, b) => a.Percentage - b.Percentage)
 
    }else if (field === 'ties') {
-    this.teams = json.sort((a, b) => a.Ties - b.Ties)
+    this.teams = this.teamsJson.sort((a, b) => a.Ties - b.Ties)
  }  else if (field === "losses") {
-      this.teams = json.sort((a, b) => a.Losses - b.Losses)
+      this.teams = this.teamsJson.sort((a, b) => a.Losses - b.Losses)
    } else if (field === "team") {
-      this.teams = json.sort((a, b) => b.Name.localeCompare(a.Name))
+      this.teams = this.teamsJson.sort((a, b) => b.Name.localeCompare(a.Name))
    }else if (field === 'pf') {
-    this.teams = json.sort((a, b) => a.PointsFor - b.PointsFor)
+    this.teams = this.teamsJson.sort((a, b) => a.PointsFor - b.PointsFor)
   }else if (field === 'pa') {
-    this.teams = json.sort((a, b) => a.PointsAgainst - b.PointsAgainst)
+    this.teams = this.teamsJson.sort((a, b) => a.PointsAgainst - b.PointsAgainst)
   }
  
   this.sortDirection = 'ASC';
@@ -159,10 +157,13 @@ jsonFilter(nConference, nDivision){
 
  },
  created (){
-   this.teams = json;
-   this.sortDirection = 'ASC';
+   
    this.num = 0;
-   this.prevSection = ' ';
+   this.teamsJson = JSON.parse(localStorage.getItem('storedTeams'));
+   this.gamesJson = JSON.parse(localStorage.getItem('storedAllGames'));
+   this.teams = this.teamsJson;
+   this.sortDirection = 'ASC';
+   
  }
 
  
